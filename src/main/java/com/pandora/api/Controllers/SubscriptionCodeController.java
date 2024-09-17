@@ -5,6 +5,7 @@ import com.pandora.api.entity.User;
 import com.pandora.api.service.AdminService;
 import com.pandora.api.service.SubscriptionCodeService;
 import com.pandora.api.util.Pagination;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
 
 import static com.pandora.api.entity.User.ROLE_OWNER;
 
@@ -41,10 +44,15 @@ public class SubscriptionCodeController {
         return "codes";
     }
 
-    @PostMapping(value = "/admin/codes/create")
-    public String create(@RequestParam("duration") Long duration) {
-        User auth = adminService.getAuthenticatedUser();
-        subscriptionCodeService.create(duration, auth);
+    @GetMapping(value = "/admin/codes/create")
+    public String create(Model model) {
+        model.addAttribute("code",new SubscriptionCode().setRedemptions(1L));
+        return "create-subscription";
+    }
+
+    @PostMapping(value = "/admin/codes/save")
+    public String save(Model model, @Valid SubscriptionCode code) {
+        subscriptionCodeService.create(code,adminService.getAuthenticatedUser().getId());
         return "redirect:/admin/codes";
     }
 

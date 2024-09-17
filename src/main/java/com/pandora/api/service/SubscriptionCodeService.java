@@ -24,13 +24,11 @@ public class SubscriptionCodeService {
 
     private final SubscriptionCodeRepository subscriptionCodeRepository;
 
-    public SubscriptionCode create(Long duration, User user) {
-        SubscriptionCode code = new SubscriptionCode();
+    public SubscriptionCode create(SubscriptionCode code,Long userId) {
         code.setCode(generateRandomString(12));
         code.setCreated(new Date());
-        code.setDuration(duration);
-        code.setOwnerId(user.getId());
-        code.setUsed(false);
+        code.setOwnerId(userId);
+        code.setUsed(0L);
         return subscriptionCodeRepository.save(code);
     }
 
@@ -42,7 +40,7 @@ public class SubscriptionCodeService {
             code.setCreated(new Date());
             long duration = Integer.valueOf(transaction.getDuration().replace("M", "")) * 30 * 24 * 60 * 60 * 1000;
             code.setDuration(duration);
-            code.setUsed(false);
+            code.setUsed(0L);
             code.setTransactionId(transaction.getId());
             codes.add(code);
         }

@@ -19,8 +19,8 @@ public class SubscriptionCode {
     private String code;
     private Long duration;
     private Date created;
-    private Date usageDate;
-    private boolean used = false;
+    private Long redemptions;
+    private Long used;
     private String accountId;
     private Long transactionId;
     private Long ownerId;
