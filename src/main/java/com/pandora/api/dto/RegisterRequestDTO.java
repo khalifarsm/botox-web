@@ -9,4 +9,5 @@ public class RegisterRequestDTO {
     private String subscription;
     private String reset;
     private String password;
+    private String token;
 }

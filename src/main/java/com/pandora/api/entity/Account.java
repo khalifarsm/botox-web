@@ -25,6 +25,7 @@ public class Account implements UserDetails {
     private boolean wipe = false;
     private String password;
     private Date created;
+    private String token;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

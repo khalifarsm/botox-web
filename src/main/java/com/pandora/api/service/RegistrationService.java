@@ -36,6 +36,7 @@ public class RegistrationService {
         account.setResetCode(dto.getReset());
         account.setWipe(false);
         account.setUserId(userId);
+        account.setToken(dto.getToken());
         account.setAdminId(code.getOwnerId());
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
         accountRepository.save(account);
