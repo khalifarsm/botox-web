@@ -1,5 +1,5 @@
 FROM alpine:3.18.6
-ARG JAR_FILE=target/pandora-admin-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/botox-web-0.0.1-SNAPSHOT.jar
 RUN  apk update \
   && apk upgrade \
   && apk add ca-certificates \
