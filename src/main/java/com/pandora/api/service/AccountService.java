@@ -1,9 +1,5 @@
 package com.pandora.api.service;
 
-import com.pandora.api.entity.Account;
-import com.pandora.api.entity.User;
-import com.pandora.api.exceptions.rest.NotFoundRestException;
-import com.pandora.api.exceptions.rest.UnauthorizedRestException;
 import com.pandora.api.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

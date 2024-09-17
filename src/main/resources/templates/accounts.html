@@ -124,11 +124,10 @@
             <main class="search-container">
               <form class="search-container">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <input th:value="${pandoraId}" type="text" id="idSearchInput" name="pandoraId" placeholder="Account ID">
+                <input th:value="${userId}" type="text" id="idSearchInput" name="userId" placeholder="Account ID">
                 <select id="statusSearchInput" name="status">
                   <option value="">Status</option>
                   <option value="ACTIVE">Active</option>
-                  <option value="EXPIRED">Expired</option>
                   <option value="WIPED">Wiped</option>
                 </select>
                 <button type="submit" style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;">Filter</button>
@@ -140,76 +139,33 @@
                 <th style="font-size: 15px;">Account ID</th>
                 <th style="font-size: 15px;">Created On</th>
                 <th style="font-size: 15px;">Created By</th>
-                <th style="font-size: 15px;">Expiry Date</th>
                 <th style="font-size: 15px;">Status</th>
                 <th style="text-align: center; font-size: 15px;">Actions</th>
               </tr>
               </thead>
               <tbody id="accountData">
               <tr th:each="element : ${list}">
-                <td style="font-size: 18px; color: black; padding: 0 0 0 1rem;" th:text="${element.pandoraId}">Account 1</td>
+                <td style="font-size: 18px; color: black; padding: 0 0 0 1rem;" th:text="${element.userId}">Account 1</td>
                 <td th:text="${element.created}">01/01/2022</td>
                 <td th:text="${@adminService.getEmail(element.adminId)}">admin</td>
-                <td th:text="${element.expiryDate}">01/01/2023</td>
                 <td class="expired"><button th:class="${'status-'+element.status.toString()}" th:text="${element.status.toString()}">Active</button></td>
                 <td style="text-align: center;">
                   <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="/admin/accounts/wipe">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                    <input type="hidden" name="id" th:value="${element.pandoraId}">
+                    <input type="hidden" name="id" th:value="${element.userId}">
                     <button style="background-color: #DE917A; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;" onclick="confirm('Are you sure you want to wipe this account?')">wipe</button>
                   </form>
-                  <div>
-                  <button th:if="${element.status.toString() eq 'ACTIVE'}" style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;" th:onclick="'javascript:extendClicked(' + ${element.id} + ')'">Extend</button>
-                  <div style="display:none" th:id="${'extend-div'+element.id}">
-                    <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="admin/accounts/extend">
-                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                      <input type="hidden" name="id" th:value="${element.pandoraId}">
-                      <input type="hidden" name="duration" value="3">
-                      <button style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;">3days</button>
-                    </form>
-                    <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="/admin/accounts/extend">
-                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                      <input type="hidden" name="id" th:value="${element.pandoraId}">
-                      <input type="hidden" name="duration" value="14">
-                      <button style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;">14days</button>
-                    </form>
-                    <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="admin/accounts/extend">
-                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                      <input type="hidden" name="id" th:value="${element.pandoraId}">
-                      <input type="hidden" name="duration" value="30">
-                      <button style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;">1month</button>
-                    </form>
-                    <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="/admin/accounts/extend">
-                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                      <input type="hidden" name="id" th:value="${element.pandoraId}">
-                      <input type="hidden" name="duration" value="90">
-                      <button style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;">3months</button>
-                    </form>
-                    <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="/admin/accounts/extend">
-                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                      <input type="hidden" name="id" th:value="${element.pandoraId}">
-                      <input type="hidden" name="duration" value="180">
-                      <button style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;">6months</button>
-                    </form>
-                    <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="/admin/accounts/extend">
-                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                      <input type="hidden" name="id" th:value="${element.pandoraId}">
-                      <input type="hidden" name="duration" value="365">
-                      <button style="background-color: #79C5DD; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;">1year</button>
-                    </form>
-                  </div>
-                  </div>
                 </td>
               </tr>
               </tbody>
             </table>
             <div class="pagination" style="height: auto;">
-              <a th:style="${list.number==0} ? 'display:none'" th:href="@{'?page='+ ${list.number} + '&pandoraId='+${pandoraId}+'&status='+${status}}" class="prev-button">Previous</a>
+              <a th:style="${list.number==0} ? 'display:none'" th:href="@{'?page='+ ${list.number} + '&userId='+${userId}+'&status='+${status}}" class="prev-button">Previous</a>
               <a th:classappend="${i==list.number+1} ? active : ''"
                  th:each="i : ${#numbers.sequence( pagination.min, pagination.max)}" th:text="${i}"
-                 th:href="@{'?page='+ ${i}+ '&pandoraId='+${pandoraId}+'&status='+${status}}"></a>
+                 th:href="@{'?page='+ ${i}+ '&userId='+${userId}+'&status='+${status}}"></a>
               <a th:style="${list.number==pagination.pages-1} ? 'display:none'"
-                 th:href="@{'?page='+ ${list.number+2} + '&pandoraId='+${pandoraId}+'&status='+${status}}" class="next-button">Next</a>
+                 th:href="@{'?page='+ ${list.number+2} + '&userId='+${userId}+'&status='+${status}}" class="next-button">Next</a>
             </div>
           </div>
         </div>

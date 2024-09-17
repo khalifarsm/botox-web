@@ -12,4 +12,5 @@ public interface SubscriptionCodeRepository extends JpaRepository<SubscriptionCo
     Page<SubscriptionCode> findByOwnerId(Long id, Pageable pageable);
 
     Long countByOwnerId(Long id);
+    SubscriptionCode findFirstByCode(String code);
 }

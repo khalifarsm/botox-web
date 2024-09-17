@@ -131,6 +131,7 @@
                 <th style="font-size: 15px;">Created On</th>
                 <th style="font-size: 15px;">Created By</th>
                 <th style="font-size: 15px;">Used</th>
+                <th style="font-size: 15px;">Redemptions</th>
                 <th style="text-align: center; font-size: 15px;">Actions</th>
               </tr>
               </thead>
@@ -140,6 +141,8 @@
                 <td th:text="${element.created}">01/01/2022</td>
                 <td th:text="${@adminService.getEmail(element.ownerId)}">admin</td>
                 <td th:text="${element.used}">
+                </td>
+                <td th:text="${element.redemptions}">
                 </td>
                 <td style="text-align: center;">
                   <form th:if="${element.used eq 0}" method="post" action="/admin/codes/delete">

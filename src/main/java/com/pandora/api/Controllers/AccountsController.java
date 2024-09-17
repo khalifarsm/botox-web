@@ -40,9 +40,9 @@ public class AccountsController {
 
     @GetMapping(value = "/admin/accounts")
     public String index(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page
-            , @RequestParam(value = "pandoraId", required = false, defaultValue = "") String pandoraId
+            , @RequestParam(value = "userId", required = false, defaultValue = "") String userId
             , @RequestParam(value = "status", required = false, defaultValue = "") String status) {
-        if (pandoraId == null) pandoraId = "";
+        if (userId == null) userId = "";
         AccountStatus accountStatus = AccountStatus.ALL;
         if (status != null && !status.isEmpty()) {
             try {
@@ -51,32 +51,32 @@ public class AccountsController {
                 log.warn(ex.getMessage());
             }
         }
-        pandoraId = "%" + pandoraId + "%";
+        userId = "%" + userId + "%";
         Page<Account> list = null;
         User auth = adminService.getAuthenticatedUser();
         if (auth.getRole().equals(ROLE_OWNER)) {
             if (accountStatus == AccountStatus.ACTIVE) {
-                list = accountRepository.searchActive(pandoraId, new Date(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
+                list = accountRepository.searchActive(userId, new Date(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
             } else if (accountStatus == AccountStatus.WIPED) {
-                list = accountRepository.searchWiped(pandoraId, PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
+                list = accountRepository.searchWiped(userId, PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
                 model.addAttribute("list", list);
             } else if (accountStatus == AccountStatus.ALL) {
-                list = accountRepository.search(pandoraId, PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
+                list = accountRepository.search(userId, PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
             }
         } else {
             if (accountStatus == AccountStatus.ACTIVE) {
-                list = accountRepository.searchActiveByAdminId(pandoraId, auth.getId(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
+                list = accountRepository.searchActiveByAdminId(userId, auth.getId(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
             } else if (accountStatus == AccountStatus.WIPED) {
-                list = accountRepository.searchWipedByAdminId(pandoraId, auth.getId(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
+                list = accountRepository.searchWipedByAdminId(userId, auth.getId(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
                 model.addAttribute("list", list);
             } else if (accountStatus == AccountStatus.ALL) {
-                list = accountRepository.searchByAdminId(pandoraId, auth.getId(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
+                list = accountRepository.searchByAdminId(userId, auth.getId(), PageRequest.of(page - 1, 30, Sort.Direction.DESC, "id"));
             }
         }
         model.addAttribute("list", list);
         Pagination pagination = new Pagination(page, list.getTotalPages());
         model.addAttribute("pagination", pagination);
-        model.addAttribute("pandoraId", pandoraId.replace("%", ""));
+        model.addAttribute("userId", userId.replace("%", ""));
         model.addAttribute("status", status);
         return "accounts";
     }

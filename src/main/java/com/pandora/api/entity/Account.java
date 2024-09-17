@@ -23,6 +23,8 @@ public class Account implements UserDetails {
     private Long adminId;
     private String resetCode;
     private boolean wipe = false;
+    private String password;
+    private Date created;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
