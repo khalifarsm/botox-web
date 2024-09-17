@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="template">
+<meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <th:block th:replace=~{fragments/style}></th:block>
+</head>
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <th:block th:replace=~{fragments/left-menu}></th:block>
+    <div class="body-wrapper">
+      <th:block th:replace=~{fragments/right-menu}></th:block>
+      <div class="container-fluid">
+        <div class="py-6 px-6 text-center" style="overflow: scroll;">
+          <h3 style="margin-top: 1rem;">SECURITY</h3>
+          <p>download google authenticator or similar application to your phone and scan the QR code bellow</p>
+          <img th:src="${url}" height="200" width="200">
+          <p>copy the code you see on your application HERE and submit</p>
+          <form method="post" action="/admin/security/mfa">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input type="text" name="code">
+            <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" style="background-color: #282632; border: none;">SUBMIT</button>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <th:block th:replace=~{fragments/script}></th:block>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="template">
+<meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discount</title>
+  <th:block th:replace=~{fragments/style}></th:block>
+  <style>
+    .container-fluid > div {
+      overflow: scroll;
+    }
+    .ag-courses_box {
+      padding-bottom: 0.5rem !important;
+    }
+    .upload-app-form .form-group input, textarea{
+      padding: .5rem 1rem;
+      width: 500px;
+      border-radius: 15px ;
+      border: 1px solid black ;
+      outline: none ;
+      background-color: white;
+    }
+    .upload-app-form label {
+      margin-bottom: 0.2rem;
+      font-size: 15px;
+    }
+    #file-input {
+      display: none;
+    }
+    #file-input-label {
+      padding: 10px 15px;
+      border: 1px solid black;
+      border-radius: 4%;
+      background-color: white;
+      width: 500px;
+      font-size: 15px;
+      border-radius: 15px ;
+    }
+    .btn-submit {
+      margin-top: 1rem;
+      background-color: #282632;
+      color: white;
+      padding: .5rem 2rem;
+      font-size: 15px;
+      border-radius: 15px ;
+      border: none ;
+      outline: none ;
+    }
+    @media (max-width: 1200px) {
+      .ag-courses_box {
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 0.5rem !important;
+      }
+      .container-fluid > div {
+        height: auto;
+      }
+      h2 {
+        text-align: center;
+      }
+      #file-input-label {
+        width: 300px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        font-weight: bold;
+      }
+      .form-group input[type="text"],
+      .form-group input[type="file"],
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+      }
+      .btn-submit:hover {
+        background-color: #0056b3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <th:block th:replace=~{fragments/left-menu}></th:block>
+    <div class="body-wrapper">
+      <th:block th:replace=~{fragments/right-menu}></th:block>
+      <div class="container-fluid">
+        <div class="py-6 px-6 text-center">
+          <h3 style="margin-top: 1rem;">DISCOUNTS</h3>
+          <form action="/admin/discounts/upload" th:object="${discount}" method="post" class="upload-app-form" enctype="multipart/form-data">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+              <label for="code">Code:</label>
+              <br>
+              <input type="text" th:field="*{code}" id="code">
+            </div>
+            <div class="form-group">
+              <label for="discount">Discount:</label>
+              <br>
+              <input type="number" max="99" min="0" step="1" th:field="*{discount}" id="discount">
+            </div>
+            <div class="form-group">
+              <label for="minAccounts">Min accounts:</label>
+              <br>
+              <input type="number" min="1" step="1" th:field="*{minAccounts}" id="minAccounts">
+            </div>
+            <button class="btn-submit" type="submit">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <th:block th:replace=~{fragments/script}></th:block>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="template">
+<meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Admin</title>
+  <th:block th:replace=~{fragments/style}></th:block>
+  <style>
+    body {
+      background-color: #282632;
+    }
+    .container-fluid > div {
+      align-items: center;
+      margin-left: 0 !important;
+    }
+    @media (max-width: 1200px) {
+      .ag-courses_box {
+        flex-direction: column;
+        align-items: center;
+      }
+      .container-fluid > div {
+        height: auto;
+      }
+      .container-fluid > div div {
+        width: 100% !important;
+      }
+      .container-fluid > div {
+        height: 70vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <th:block th:replace=~{fragments/left-menu}></th:block>
+    <div class="body-wrapper">
+      <th:block th:replace=~{fragments/right-menu}></th:block>
+      <div class="container-fluid">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8" style="width: 36%;">
+            <h3 style="margin-bottom: 2rem; text-align: center;">Create Admin</h3>
+            <div class="card mb-0">
+              <div class="card-body">
+                <form action="/admin/admins/create" th:object="${admin}" method="post">
+                  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <select th:field="*{role}" class="form-control" id="role">
+                      <option value="ADMIN">ADMIN</option>
+                      <option value="OWNER">OWNER</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" style="background-color: #282632; border: none;">Create</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <th:block th:replace=~{fragments/script}></th:block>
+</body>
+</html>

@@ -1,0 +1,1 @@
+RUN mvn install:install-file -DlocalRepositoryPath="C:\Users\khalifa\Documents\java projects\John smith\pandora-admin\local-maven-repo" -Dfile="libs/coinpayments-java-1.4.jar" -DgroupId="org.brunocvcunha.coinpayments" -DartifactId="coinpayments-java" -Dversion="1.4" -Dpackaging="jar" -DgeneratePom=true

@@ -1,0 +1,98 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorator="template">
+<meta charset="utf-8">
+<aside class="left-sidebar">
+  <div>
+    <div class="brand-logo d-flex align-items-center justify-content-between">
+      <a href="./index.html" class="text-nowrap logo-img" style="margin-top: 1rem;">
+        <img src="/images/logos/signal-2023-08-28-164928dsc.png" width="70" alt="" />
+        <span style="font-weight: 600; font-size: 20px; color: #464646;">Pandora</span>
+      </a>
+      <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <i class="ti ti-x fs-8"></i>
+      </div>
+    </div>
+    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+      <ul id="sidebarnav">
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">Home</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+            <span class="hide-menu">Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/admin/accounts" aria-expanded="false">
+                <span>
+                  <i class="ti ti-user"></i>
+                </span>
+            <span class="hide-menu">Accounts</span>
+          </a>
+        </li>
+        <li th:if="${@adminService.getAuthenticatedUser().role eq 'OWNER'}" class="sidebar-item">
+          <a class="sidebar-link" href="/admin/versions" aria-expanded="false">
+                <span>
+                  <i class="ti ti-settings"></i>
+                </span>
+            <span class="hide-menu">Application Versions</span>
+          </a>
+        </li>
+        <li th:if="${@adminService.getAuthenticatedUser().role eq 'OWNER'}" class="sidebar-item">
+          <a class="sidebar-link" href="/admin/versions/create" aria-expanded="false">
+                <span>
+                  <i class="ti ti-apps"></i>
+                </span>
+            <span class="hide-menu">Create Version</span>
+          </a>
+        </li>
+        <li th:if="${@adminService.getAuthenticatedUser().role eq 'OWNER'}" class="sidebar-item">
+          <a class="sidebar-link" href="/admin/admins" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+            <span class="hide-menu">Admin accounts</span>
+          </a>
+        </li>
+        <li th:if="${@adminService.getAuthenticatedUser().role eq 'OWNER'}" class="sidebar-item">
+          <a class="sidebar-link" href="/admin/admins/create" aria-expanded="false">
+                <span>
+                  <i class="ti ti-user-plus"></i>
+                </span>
+            <span class="hide-menu">Create Admin</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/admin/codes" aria-expanded="false">
+                <span>
+                  <i class="ti ti-key"></i>
+                </span>
+            <span class="hide-menu">Subscription codes</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/admin/discounts" aria-expanded="false">
+                <span>
+                  <i class="ti ti-tag"></i>
+                </span>
+            <span class="hide-menu">Discounts</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/admin/security" aria-expanded="false">
+                <span>
+                  <i class="ti ti-lock"></i>
+                </span>
+            <span class="hide-menu">Security</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

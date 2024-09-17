@@ -1,0 +1,24 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+       layout:decorator="template">
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/png" href="/images/logos/favicon.png" />
+<link rel="stylesheet" href="/scss/styles.css" />
+<link rel="stylesheet" href="/css/status.css" />
+<style>
+    /* Private style */
+    body {
+      background-color: #282632;
+    }
+    @media (max-width: 1200px) {
+      .ag-courses_box {
+        flex-direction: column;
+        align-items: center;
+      }
+      .container-fluid > div {
+        height: auto;
+      }
+    }
+  </style>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="template">
+<meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <th:block th:replace=~{fragments/style}></th:block>
+</head>
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <th:block th:replace=~{fragments/left-menu}></th:block>
+    <div class="body-wrapper">
+      <th:block th:replace=~{fragments/right-menu}></th:block>
+      <div class="container-fluid">
+        <div class="py-6 px-6 text-center" style="overflow: scroll;">
+          <h3 style="margin-top: 1rem;">WELCOME TO YOUR DASHBOARD</h3>
+          <div class="ag-courses_box">
+          <div class="ag-courses_item">
+            <a href="/admin/accounts?status=ACTIVE" class="ag-courses-item_link">
+              <div class="ag-courses-item_bg"></div>
+              <div class="ag-courses-item_date-box">
+                Active accounts:</br>
+                <span class="ag-courses-item_date" th:text="${active}">
+                  22
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="ag-courses_item">
+            <a href="/admin/accounts?status=WIPED" class="ag-courses-item_link">
+              <div class="ag-courses-item_bg"></div>
+              <div class="ag-courses-item_date-box">
+                Wiped accounts:</br>
+                <span class="ag-courses-item_date" th:text="${wiped}">
+                  100
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="ag-courses_item">
+            <a href="/admin/accounts?status=EXPIRED" class="ag-courses-item_link">
+              <div class="ag-courses-item_bg"></div>
+      
+              <div class="ag-courses-item_date-box">
+                Expired accounts:</br>
+                <span class="ag-courses-item_date" th:text="${expired}">
+                  50
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="ag-courses_item">
+            <a href="/admin/codes" class="ag-courses-item_link">
+              <div class="ag-courses-item_bg"></div>
+              <div class="ag-courses-item_date-box">
+                Subscriptions:</br>
+                <span class="ag-courses-item_date" th:text="${codes}">
+                  60
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <th:block th:replace=~{fragments/script}></th:block>
+</body>
+</html>

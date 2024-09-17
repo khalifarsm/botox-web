@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="template">
+<meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <th:block th:replace=~{fragments/style}></th:block>
+</head>
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <th:block th:replace=~{fragments/left-menu}></th:block>
+    <div class="body-wrapper">
+      <th:block th:replace=~{fragments/right-menu}></th:block>
+      <div class="container-fluid">
+        <div class="py-6 px-6 text-center" style="overflow: scroll;">
+          <h3 style="margin-top: 1rem;">SECURITY</h3>
+          <p th:if="${param.error}" th:text="${param.error}" style="color:red;"></p>
+          <p th:if="${!user.getIsUsing2FA()}" style="color:red;">MFA is disabled for your account, click on the button bellow to enable it</p>
+          <p th:if="${user.getIsUsing2FA()}" style="color:green;">MFA is enabled for your account, click on the button bellow to disable it</p>
+          <div th:if="${!user.getIsUsing2FA()}"><form method="post" action="/admin/security/activation">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input type="hidden" value="enable" name="activation">
+            <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" style="background-color: #282632; border: none;">ENABLE MFA</button>
+          </form></div>
+          <div th:if="${user.getIsUsing2FA()}"><form method="post" action="/admin/security/activation">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input type="hidden" value="disable" name="activation">
+            <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" style="background-color: #282632; border: none;">DISABLE MFA</button>
+          </form></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <th:block th:replace=~{fragments/script}></th:block>
+</body>
+</html>
