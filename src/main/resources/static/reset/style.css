@@ -1,0 +1,193 @@
+:root {
+    --color-white: #fff;
+    --color-light: #f1f5f9;
+    --color-black: #121212;
+    --color-night: #001632;
+    --color-red: #f44336;
+    --color-blue: #1a73e8;
+    --color-gray: #80868b;
+    --color-grayish: #dadce0;
+    --shadow-normal: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body, * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.text {
+    font-family: inherit;
+    line-height: inherit;
+    text-transform: unset;
+    text-rendering: optimizeLegibility;
+}
+
+.wipe-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.side-image {
+    width: 32%;
+    background-image: url("/reset/assets/cleaner.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: rgba(58, 147, 255, 0.4) 5px 0px, rgba(58, 147, 255, 0.3) 10px 0px, rgba(58, 147, 255, 0.2) 15px 0px, rgba(58, 147, 255, 0.1) 20px 0px, rgba(58, 147, 255, 0.05) 25px 0px;
+}
+
+.side-image img {
+    width: 110px;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+.container img {
+    width: 90px;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/images/backgrounds/rocket.png");
+    background-color: rgba(255, 255, 255, 0.864);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.main div input {
+    margin: 1rem 0;
+}
+
+a, button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 80rem;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0 2rem;
+    margin: 0 auto;
+}
+
+.text-large {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-black);
+}
+
+.text-normal {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-black);
+}
+
+.text-links {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-blue);
+}
+
+.text-links:hover {
+    text-decoration: underline;
+}
+
+.main .wrapper {
+    max-width: 28rem;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 2rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 1.5rem;
+    color: var(--color-black);
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(14px) !important;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.main .wrapper .form {
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+}
+
+.main .wrapper .form .input-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main .wrapper .form .input-field {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: inherit;
+    width: 100%;
+    height: auto;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    color: var(--color-black);
+    background: var(--color-light);
+    text-transform: unset;
+    text-rendering: optimizeLegibility;
+}
+
+.main .wrapper .form .input-submit {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: inherit;
+    cursor: pointer;
+    min-width: 40%;
+    height: auto;
+    padding: 0.65rem 1.25rem;
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    color: var(--color-white);
+    background: #282632;
+    box-shadow: var(--shadow-medium);
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: #3078BB !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .side-image {
+        display: none;
+    }
+    .main {
+        width: 100%;
+    }
+}

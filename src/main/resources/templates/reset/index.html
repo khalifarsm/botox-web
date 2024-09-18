@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandora</title>
+    <link rel="stylesheet" href="/reset/style.css">
+</head>
+<body>
+    <section class="wipe-page">
+        <main class="main">
+            <div class="container">
+                <img src="/images/logos/logo.png" alt="botox-logo">
+                <section class="wrapper">
+                    <div class="heading">
+                        <h1 class="text text-large">Erase your phone</h1>
+                        </p>
+                    </div>
+                    <form name="wipe-form" id="wipe-form" class="form">
+                        <div class="input-control">
+                            <label for="user-id" class="input-label" hidden>User ID</label>
+                            <input type="text" name="user-id" id="user-id" class="input-field" placeholder="User ID">
+                        </div>
+                        <div class="input-control">
+                            <label for="reset-code" class="input-label" hidden>Reset code</label>
+                            <input type="password" name="reset-code" id="reset-code" class="input-field" placeholder="Reset code">
+                        </div>
+                        <div class="input-control">
+                            <label for="reset-time" class="input-label" hidden>Reset Time</label>
+                            <select type="text" name="reset-time" id="reset-time" class="input-field">
+                                <option value="0">Now</option>
+                                <option value="604800">After 1 Week</option>
+                                <option value="2592000">After 1 Month</option>
+                            </select>
+                        </div>
+                        <div class="input-control">
+                            <input id="submit-btn" type="submit" name="submit" class="input-submit" value="RESET">
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </section>
+    <script src="/reset/sweetalert2-11.min.js"></script>
+    <script src="/reset/wipe.js"></script>
+</body>
+</html>

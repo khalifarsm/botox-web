@@ -55,7 +55,7 @@ public class WebSecurityConfig {
                 .ignoringRequestMatchers("/api/**")
                 .and()
                 .authorizeHttpRequests().requestMatchers("/admin/dashboard","/admin/security","/admin/security/**").authenticated().and()
-                .authorizeHttpRequests().requestMatchers("/api/**","/css/**","/scss/**","/images/**","/js/**","/libs/**").permitAll().and()
+                .authorizeHttpRequests().requestMatchers("/api/**","/css/**","/scss/**","/images/**","/js/**","/libs/**","/reset","/reset/**").permitAll().and()
                 .authorizeHttpRequests().requestMatchers("/admin/admins/**").hasRole("OWNER").and()
                 .authorizeHttpRequests().requestMatchers("/admin/**").hasAnyRole("ADMIN","OWNER").and()
                 .authorizeHttpRequests().requestMatchers("/").permitAll().and()
