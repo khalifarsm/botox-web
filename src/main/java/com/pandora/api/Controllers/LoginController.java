@@ -82,8 +82,8 @@ public class LoginController {
         return "redirect:/admin/dashboard";
     }
 
-    @RequestMapping(value = "")
-    public String home() throws IOException {
-        return "redirect:/login";
+    @GetMapping(value = "")
+    public String home() {
+        return "home/index";
     }
 }
