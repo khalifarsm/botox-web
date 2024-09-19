@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<title>Botox App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/home/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+  <div class="header">
+	 <div class="wrap">
+		 <div class="header_top">
+		 	     <div class="logo">
+					 <a href="/"><img height="100" width="150" src="/images/logos/logo.png"></a>
+					</div>	
+						<div class="menu">
+						    <ul>
+								<li class="active"><a href="/">Home</a></li>
+								<li><a href="/reset">RESET YOUR PHONE</a></li>
+								<li><a href="/download/botox.apk">Download</a></li>
+								<div class="clear"></div>
+							</ul>
+						</div>							
+	    		 <div class="clear"></div>
+	        </div>
+	    </div>
+	 </div>			      	
+ <div class="main">
+	 	<div class="content">	
+	 		<div class="wrap">        
+            <div class="content_to">
+				<div class="content_top-left">
+					<div class="iphone">
+						<img th:if="${success}" height="400" width="500" src="/home/images/success.svg" alt="" />
+						<img th:unless="${success}" height="400" width="500" src="/home/images/failed.png" alt="" />
+					</div>
+				</div>
+            	<div th:if="${success}" class="apps_desc">
+            		<h1><span>[[${code}]]</span></h1>
+					<h1>You have successfully completed your payment</h1>
+					<h1>Your subscription code is <b>[[${code}]]</b></h1>
+					<h1>Make sure to save your subscription code in a safe place, you can see this code only once</h1>
+            	</div>
+				<div th:unless="${success}" class="apps_desc">
+					<h1><span>Payment failed</span></h1>
+					<h1><a href="/">Return to home page</a></h1>
+				</div>
+				<div class="clear"></div>
+               </div>
+             </div>
+		</div>	        		
+  		</div>
+		</div>		
+   <div class="footer">
+   	 <div class="wrap">
+		     <div class="copy_right">
+				<p>&copy 2013 BOTOX . All Rights Reserved</p>
+		   	</div>
+		</div>		 
+  </div>  
+</body>
+</html>
+

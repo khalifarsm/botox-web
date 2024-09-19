@@ -1,5 +1,6 @@
 package com.pandora.api.service;
 
+import com.pandora.api.entity.Payment;
 import com.pandora.api.entity.SubscriptionCode;
 import com.pandora.api.entity.Transaction;
 import com.pandora.api.entity.User;
@@ -24,12 +25,29 @@ public class SubscriptionCodeService {
 
     private final SubscriptionCodeRepository subscriptionCodeRepository;
 
-    public SubscriptionCode create(SubscriptionCode code,Long userId) {
+    public SubscriptionCode create(SubscriptionCode code, Long userId) {
         code.setCode(generateRandomString(12));
         code.setCreated(new Date());
         code.setOwnerId(userId);
         code.setUsed(0L);
         return subscriptionCodeRepository.save(code);
+    }
+
+    public SubscriptionCode create(Payment payment) {
+        SubscriptionCode code = subscriptionCodeRepository.findFirstByPaymentId(payment.getId());
+        if (code == null) {
+            code = new SubscriptionCode();
+            code.setRedemptions(1L);
+            code.setCode(generateRandomString(12));
+            code.setCreated(new Date());
+            code.setOwnerId(null);
+            code.setUsed(0L);
+            code.setPaymentId(payment.getId());
+            return subscriptionCodeRepository.save(code);
+        } else {
+            return code;
+        }
+
     }
 
     public List<SubscriptionCode> create(Transaction transaction) {

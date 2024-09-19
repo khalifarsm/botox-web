@@ -24,6 +24,7 @@ public class SubscriptionCode {
     private String accountId;
     private Long transactionId;
     private Long ownerId;
+    private Long paymentId;
 
     public Long getDays() {
         return duration / (1000 * 60 * 60 * 24);
