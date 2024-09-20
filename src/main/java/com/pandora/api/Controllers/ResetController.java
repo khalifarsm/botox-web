@@ -19,7 +19,7 @@ import static org.springframework.security.web.context.HttpSessionSecurityContex
 @RequiredArgsConstructor
 public class ResetController {
 
-    private final MessageService messageService;
+    private final NotificationService notificationService;
 
     @GetMapping(value = "/reset")
     public String reset() {
@@ -31,6 +31,6 @@ public class ResetController {
     @ResponseBody
     public void reset(@RequestBody ResetRequestDTO dto) {
         System.out.println(dto);
-
+        notificationService.send(dto);
     }
 }

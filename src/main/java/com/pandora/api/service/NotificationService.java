@@ -28,6 +28,9 @@ public class NotificationService {
 
     @SneakyThrows
     public void send(ResetRequestDTO dto) {
+        if (dto.getAfter() < 0) {
+            throw new BadRequestRestException("after should be positive value");
+        }
         Account account = accountRepository.findFirstByUserId(dto.getUserId())
                 .orElseThrow(() -> new NotFoundRestException("user id or reset code not valid"));
         if (!dto.getReset().equals(SHA256Hash.hash(dto.getReset()))) {
