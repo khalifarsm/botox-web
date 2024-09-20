@@ -42,22 +42,27 @@ public class PaymentController {
         payment.setUid(sessionDTO.getId());
         payment.setStatus("pending");
         payment.setSessionId(sessionDTO.getSession().getId());
+        paymentRepository.save(payment);
         return "redirect:" + sessionDTO.getSession().getUrl();
     }
 
     @GetMapping(value = "/payment/{status}/{id}")
-    public String payment(@PathVariable("status")String status,@PathVariable("id")String id,Model model) {
+    public String payment(@PathVariable("status") String status, @PathVariable("id") String id, Model model) {
         Payment payment = paymentRepository.findFirstByUid(id);
-        if(status.equalsIgnoreCase("success")){
+        if (payment == null) {
+            model.addAttribute("success", false);
+            return "home/payment";
+        }
+        if (status.equalsIgnoreCase("success")) {
             payment.setStatus("success");
             paymentRepository.save(payment);
-            SubscriptionCode code =subscriptionCodeService.create(payment);
-            model.addAttribute("code",code.getCode());
-        }else{
+            SubscriptionCode code = subscriptionCodeService.create(payment);
+            model.addAttribute("code", code.getCode());
+        } else {
             payment.setStatus("return");
             paymentRepository.save(payment);
         }
-        model.addAttribute("success",status.equals("success"));
+        model.addAttribute("success", status.equals("success"));
         return "home/payment";
     }
 }

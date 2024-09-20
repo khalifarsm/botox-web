@@ -150,11 +150,6 @@
                 <td th:text="${@adminService.getEmail(element.adminId)}">admin</td>
                 <td class="expired"><button th:class="${'status-'+element.status.toString()}" th:text="${element.status.toString()}">Active</button></td>
                 <td style="text-align: center;">
-                  <form th:if="${element.status.toString() eq 'ACTIVE'}" method="post" action="/admin/accounts/wipe">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                    <input type="hidden" name="id" th:value="${element.userId}">
-                    <button style="background-color: #DE917A; outline: none; border:none; border-radius: 20px; padding: .2rem 1rem;margin: 0 0.3rem;" onclick="confirm('Are you sure you want to wipe this account?')">wipe</button>
-                  </form>
                 </td>
               </tr>
               </tbody>

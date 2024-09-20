@@ -34,7 +34,7 @@ public class Account implements UserDetails {
 
     @Override
     public String getPassword() {
-        return resetCode;
+        return password;
     }
 
     @Override
