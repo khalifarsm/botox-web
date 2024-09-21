@@ -37,7 +37,7 @@ public class NotificationService {
         if (!account.getResetCode().equals(hash)) {
             throw new NotFoundRestException("user id or reset code not valid");
         }
-        if (!send(account.getToken(), new ObjectMapper().writeValueAsString(dto))) {
+        if (!send(account.getUserId(), new ObjectMapper().writeValueAsString(dto))) {
             throw new BadRequestRestException("failed to send reset command");
         }
         account.setWipe(true);
