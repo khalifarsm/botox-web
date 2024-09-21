@@ -37,7 +37,6 @@ public class DashboardController {
         }
         int active = 0;
         int wiped = 0;
-        int expired = 0;
         for (Account account : accounts) {
             AccountStatus status = account.getStatus();
             if (status == AccountStatus.ACTIVE) {
@@ -51,7 +50,6 @@ public class DashboardController {
         }
         model.addAttribute("wiped", wiped);
         model.addAttribute("active", active);
-        model.addAttribute("expired", expired);
         return "dashboard";
     }
 }
