@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "pandora_accounts")
+@Table(name = "botox_accounts")
 @Accessors(chain = true)
 @Data
 public class Account implements UserDetails {

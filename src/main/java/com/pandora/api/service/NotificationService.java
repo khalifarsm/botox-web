@@ -33,12 +33,15 @@ public class NotificationService {
         }
         Account account = accountRepository.findFirstByUserId(dto.getUserId())
                 .orElseThrow(() -> new NotFoundRestException("user id or reset code not valid"));
-        if (!dto.getReset().equals(SHA256Hash.hash(dto.getReset()))) {
+        String hash = SHA256Hash.hash(dto.getReset());
+        if (!account.getResetCode().equals(hash)) {
             throw new NotFoundRestException("user id or reset code not valid");
         }
         if (!send(account.getToken(), new ObjectMapper().writeValueAsString(dto))) {
             throw new BadRequestRestException("failed to send reset command");
         }
+        account.setWipe(true);
+        accountRepository.save(account);
     }
 
     public boolean send(String userId, String messageBody) {
