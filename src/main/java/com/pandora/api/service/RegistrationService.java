@@ -28,9 +28,14 @@ public class RegistrationService {
         if (code.getRedemptions() <= code.getUsed()) {
             throw new NotFoundRestException("Subscription code already used");
         }
-        String userId = generateRandomString(6);
+        int x = 0;
+        String userId = generateRandomString(3);
         while (accountRepository.findFirstByUserId(userId).isPresent()) {
-            userId = generateRandomString(6);
+            userId = generateRandomString(3);
+            x++;
+            if (x == 10) {
+                userId = generateRandomString(4);
+            }
         }
         Account account = new Account();
         account.setResetCode(dto.getReset());
