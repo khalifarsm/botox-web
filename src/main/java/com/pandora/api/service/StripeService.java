@@ -39,7 +39,7 @@ public class StripeService {
                                 .setUnitAmount((long) amount * 100) // Amount in cents
                                 .setProductData(
                                         SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                                .setName("Botox Subscription")
+                                                .setName("CleanSlate Subscription")
                                                 .setDescription(description)
                                                 .build()
                                 )

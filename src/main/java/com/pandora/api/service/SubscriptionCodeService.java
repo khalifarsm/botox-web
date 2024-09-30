@@ -26,7 +26,13 @@ public class SubscriptionCodeService {
     private final SubscriptionCodeRepository subscriptionCodeRepository;
 
     public SubscriptionCode create(SubscriptionCode code, Long userId) {
-        code.setCode(generateRandomString(12));
+        String random = generateRandomString(8);
+        SubscriptionCode old = subscriptionCodeRepository.findFirstByCode(random);
+        while (old != null) {
+            random = generateRandomString(8);
+            old = subscriptionCodeRepository.findFirstByCode(random);
+        }
+        code.setCode(random);
         code.setCreated(new Date());
         code.setOwnerId(userId);
         code.setUsed(0L);
@@ -36,9 +42,15 @@ public class SubscriptionCodeService {
     public SubscriptionCode create(Payment payment) {
         SubscriptionCode code = subscriptionCodeRepository.findFirstByPaymentId(payment.getId());
         if (code == null) {
+            String random = generateRandomString(8);
+            SubscriptionCode old = subscriptionCodeRepository.findFirstByCode(random);
+            while (old != null) {
+                random = generateRandomString(8);
+                old = subscriptionCodeRepository.findFirstByCode(random);
+            }
             code = new SubscriptionCode();
             code.setRedemptions(1L);
-            code.setCode(generateRandomString(12));
+            code.setCode(random);
             code.setCreated(new Date());
             code.setOwnerId(null);
             code.setUsed(0L);

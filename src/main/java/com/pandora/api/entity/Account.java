@@ -26,6 +26,10 @@ public class Account implements UserDetails {
     private String password;
     private Date created;
     private String token;
+    private Date sentDate;
+    private Date responseDate;
+    private Date wipeDate;
+    private Long after=0L;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -63,7 +67,6 @@ public class Account implements UserDetails {
     }
 
     public AccountStatus getStatus() {
-        Date now = new Date();
         if (wipe) {
             return AccountStatus.WIPED;
         }

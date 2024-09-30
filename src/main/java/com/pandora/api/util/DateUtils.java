@@ -12,4 +12,13 @@ public class DateUtils {
         Date tenDaysAgo = calendar.getTime();
         return tenDaysAgo;
     }
+
+    public static Date afterSeconds(int seconds){
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.SECOND, seconds);
+        Date tenDaysAgo = calendar.getTime();
+        return tenDaysAgo;
+    }
 }
