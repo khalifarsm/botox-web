@@ -40,6 +40,10 @@ public class LoginController {
     public String login() {
         return "login";
     }
+    @GetMapping(value = "/privacy")
+    public String privacy() {
+        return "home/privacy";
+    }
 
     private boolean isValidLong(String code) {
         try {
