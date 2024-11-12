@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> findByToAddress(String to);
+    List<Message> findByToAddressOrderByCreatedDesc(String to);
 }

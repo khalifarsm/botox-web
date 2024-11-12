@@ -26,7 +26,7 @@ public class MessageService {
             @Override
             @Transactional(propagation = Propagation.REQUIRES_NEW)
             public List<MessageDTO> getPendingMessages(String id) {
-                return messageRepository.findByToAddress(id)
+                return messageRepository.findByToAddressOrderByCreatedDesc(id)
                         .stream()
                         .map(m -> m.toDTO())
                         .collect(Collectors.toList());
@@ -35,10 +35,6 @@ public class MessageService {
             @Override
             @Transactional(propagation = Propagation.REQUIRES_NEW)
             public void delete(MessageDTO messageDTO) {
-                Message message = messageRepository.findById(messageDTO.getId()).orElse(null);
-                if (message != null) {
-                    messageRepository.delete(message);
-                }
             }
 
             @Override
@@ -54,7 +50,6 @@ public class MessageService {
         String content = message.getBody();
         try {
             SignalSession.sendMessage(content, message.getTo());
-            messageRepository.delete(entity);
         } catch (Exception ex) {
             log.info("failed to send the message " + message.getId() + " to: " + message.getTo());
         }

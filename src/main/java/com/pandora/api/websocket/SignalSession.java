@@ -57,7 +57,6 @@ public class SignalSession {
             try {
                 String content = message.getBody();
                 sendMessage(content, message.getTo());
-                pendingMessagesManager.delete(message);
             } catch (Exception ex) {
 //                ex.printStackTrace();
             }
