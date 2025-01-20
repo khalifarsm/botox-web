@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import jakarta.annotation.PostConstruct;
 import javax.crypto.Mac;
@@ -14,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.security.*;
 import java.util.Formatter;
 
-@Service
 @Slf4j
 public class SignatureChecker {
 

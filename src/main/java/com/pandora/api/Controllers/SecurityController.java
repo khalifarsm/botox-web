@@ -3,9 +3,7 @@ package com.pandora.api.Controllers;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.datamatrix.DataMatrixWriter;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.pandora.api.client.PandoraClient;
 import com.pandora.api.entity.User;
 import com.pandora.api.repository.AccountRepository;
 import com.pandora.api.repository.UserRepository;
@@ -35,7 +33,6 @@ public class SecurityController {
             "/admin/security/barcode";
 
     private final AccountRepository accountRepository;
-    private final PandoraClient pandoraClient;
     private final AccountService accountService;
     private final AdminService adminService;
     private final UserRepository userRepository;

@@ -1,11 +1,8 @@
 package com.pandora.api.Controllers;
 
-import com.pandora.api.client.PandoraClient;
 import com.pandora.api.entity.Account;
 import com.pandora.api.entity.AccountStatus;
 import com.pandora.api.entity.User;
-import com.pandora.api.exceptions.rest.NotFoundRestException;
-import com.pandora.api.exceptions.rest.UnauthorizedRestException;
 import com.pandora.api.repository.AccountRepository;
 import com.pandora.api.service.AccountService;
 import com.pandora.api.service.AdminService;
@@ -18,14 +15,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
-import java.util.List;
 
-import static com.pandora.api.entity.User.ROLE_ADMIN;
 import static com.pandora.api.entity.User.ROLE_OWNER;
 
 @Controller
@@ -34,7 +28,6 @@ import static com.pandora.api.entity.User.ROLE_OWNER;
 public class AccountsController {
 
     private final AccountRepository accountRepository;
-    private final PandoraClient pandoraClient;
     private final AccountService accountService;
     private final AdminService adminService;
 

@@ -9,11 +9,9 @@ import org.brunocvcunha.coinpayments.model.CreateTransactionResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.CoinPaymentsCreateTransactionRequest;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import jakarta.annotation.PostConstruct;
 
-@Service
 @Slf4j
 public class CoinPaymentsClient {
 
