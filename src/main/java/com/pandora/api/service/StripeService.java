@@ -48,7 +48,7 @@ public class StripeService {
                 .build();
         SessionCreateParams params =
                 SessionCreateParams.builder()
-                        .setSuccessUrl("https://botox.pandorachat.io/payment/success/" + id)
+                        .setSuccessUrl("https://cleanslate.mobi/payment/success/" + id)
                         .addLineItem(lineItem)
                         .setMode(SessionCreateParams.Mode.PAYMENT)
                         .setAllowPromotionCodes(true)

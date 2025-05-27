@@ -66,7 +66,7 @@ public class SubscriptionCodeService {
         List<SubscriptionCode> codes = new ArrayList<>();
         for (int i = 0; i < transaction.getAccounts(); i++) {
             SubscriptionCode code = new SubscriptionCode();
-            code.setCode(generateRandomString(12));
+            code.setCode(generateRandomString(8));
             code.setCreated(new Date());
             long duration = Integer.valueOf(transaction.getDuration().replace("M", "")) * 30 * 24 * 60 * 60 * 1000;
             code.setDuration(duration);
